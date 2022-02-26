@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DataHandlerTest {
 
-    private String testSheetId = "1cqDAzwh03eyaKvMd23UGx4TTBI1rH6d0fZvTy2B-cKQ";
+    private String testSheetId = "1GEaYs6ERiAylHa9lKlzYLHD8EoTtSxlfo1Oe-zHvyrk";
 
     @Test public void
     correctlySelectsDataFromAGoogleSheet() throws GeneralSecurityException, IOException {
