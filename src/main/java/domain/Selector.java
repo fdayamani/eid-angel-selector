@@ -21,9 +21,11 @@ public class Selector {
 
     private Child allocateAngel(Child child) {
         Collections.shuffle(unassignedChildren);
-        return unassignedChildren.stream()
+        Child match = unassignedChildren.stream()
                 .filter(potentialAngel -> !potentialAngel.isSiblingOf(child))
                 .findFirst()
                 .orElseThrow(() -> new InvalidMatchAttempt("Attempting to match siblings"));
+        unassignedChildren.remove(match);
+        return match;
     }
 }
