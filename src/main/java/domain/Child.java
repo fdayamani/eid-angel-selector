@@ -41,4 +41,8 @@ public class Child {
     public int hashCode() {
         return Objects.hash(name, age, mothersMobile, lastYearsAngel);
     }
+
+    public boolean isSiblingOf(Child child) {
+        return child.mothersMobile.equals(this.mothersMobile);
+    }
 }
