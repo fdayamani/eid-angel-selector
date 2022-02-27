@@ -9,7 +9,8 @@ public class App {
         DataHandler.transformData("1CbVUmNPBoEjvDI1fWA2AsHnVO0NZk1QvFpzApBqlM6w");
         /*
         Eventually, this would look like:
-        selector.selectEidAngelsFrom(DataHandler.transformData());
+        Map<Child, Child> allocations = selector.allocateEidAngelsFrom(DataHandler.transformData());
+        OutputHandler.printMessages(allocations)
          */
     }
 
