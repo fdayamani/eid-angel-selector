@@ -23,8 +23,9 @@ public class Selector {
         Collections.shuffle(unassignedChildren);
         Child match = unassignedChildren.stream()
                 .filter(potentialAngel -> !potentialAngel.isSiblingOf(child))
+                .filter(potentialAngel -> !potentialAngel.wasLastYearsAngelFor(child))
                 .findFirst()
-                .orElseThrow(() -> new InvalidMatchAttempt("Attempting to match siblings"));
+                .orElseThrow(() -> new InvalidMatchAttempt("Could not find suitable match for " + child.getName()));
         unassignedChildren.remove(match);
         return match;
     }

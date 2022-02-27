@@ -40,12 +40,22 @@ public class SelectorTest {
 
         assertThatExceptionOfType(InvalidMatchAttempt.class)
                 .isThrownBy(() -> underTest.assignAngels())
-                .withMessage("Attempting to match siblings")
+                .withMessage("Could not find suitable match for brother")
                 ;
     }
 
     @Test public void
     throwsExceptionIfFinalMatchIsLastYearsAngel() {
-        //TODO: implement
+        List<Child> sameAsLastYear = List.of(
+                new Child("child1", "2", "07123456789",
+                        Optional.of(new Child("child2", null, "07987654321", Optional.empty()))),
+                new Child("child2", null, "07987654321", Optional.empty())
+        );
+
+        underTest = new Selector(sameAsLastYear);
+
+        assertThatExceptionOfType(InvalidMatchAttempt.class)
+                .isThrownBy(() -> underTest.assignAngels())
+                .withMessage("Could not find suitable match for child1");
     }
 }

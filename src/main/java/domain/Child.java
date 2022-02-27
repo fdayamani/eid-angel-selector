@@ -5,15 +5,19 @@ import java.util.Optional;
 
 public class Child {
     private final String name;
+
     private final String age;
     private final String mothersMobile;
     private final Optional<Child> lastYearsAngel;
-
     public Child(String name, String age, String mothersMobile, Optional<Child> lastYearsAngel) {
         this.name = name;
         this.age = age != null ? age : "Not set";
         this.mothersMobile = mothersMobile;
         this.lastYearsAngel = lastYearsAngel;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -42,7 +46,24 @@ public class Child {
         return Objects.hash(name, age, mothersMobile, lastYearsAngel);
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public String getMothersMobile() {
+        return mothersMobile;
+    }
+
     public boolean isSiblingOf(Child child) {
         return child.mothersMobile.equals(this.mothersMobile);
+    }
+
+    public boolean wasLastYearsAngelFor(Child child) {
+        if (child.lastYearsAngel.isPresent()) {
+            Child angel = child.lastYearsAngel.get();
+            return Objects.equals(angel.name, this.name) &&
+                    Objects.equals(angel.mothersMobile, this.mothersMobile);
+        }
+        return false;
     }
 }
