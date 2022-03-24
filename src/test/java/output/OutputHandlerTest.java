@@ -3,6 +3,7 @@ package output;
 import domain.Child;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,12 +14,14 @@ public class OutputHandlerTest {
 
     @Test public void
     suitableMessageForEachMother() {
-        Map<Child, Child> allocations = Map.of(new Child("child1", "2", "number", Optional.empty()), new Child("child2", "1", "another-number", Optional.empty()),
-                new Child("child2", "5", "some-number", Optional.empty()), new Child("child5", "7m", "yet-another-number", Optional.empty()));
-        Map<String, String> messages = outputMessages(allocations);
+        Map<Child, Child> allocations = Map.of(
+                new Child("child1", "2", "number", Optional.empty()), new Child("child2", "1", "another-number", Optional.empty()),
+                new Child("child2", "5", "some-number", Optional.empty()), new Child("child5", "7m", "yet-another-number", Optional.empty()),
+                new Child("child3", "6", "some-number", Optional.empty()), new Child("child21", "5", "0712345806", Optional.empty())
+                );
+        Map<String, List<String>> messages = outputMessages(allocations);
 
-        assertThat(messages).containsAllEntriesOf(Map.of(
-                "number", "The Eid Angel for child1 is child2! Age - 1. The mother's mobile number is another-number",
-                "some-number", "The Eid Angel for child2 is child5! Age - 7m. The mother's mobile number is yet-another-number"));
+        assertThat(messages.get("number")).containsExactly("Salaam, hope you're well\nThe Eid Angel for child1 is child2! Age - 1.\nThe mother's mobile number is another-number\n");
+        assertThat(messages.get("some-number")).containsExactlyInAnyOrder("Salaam, hope you're well\nThe Eid Angel for child2 is child5! Age - 7m.\nThe mother's mobile number is yet-another-number\n", "Salaam, hope you're well\nThe Eid Angel for child3 is child21! Age - 5.\nThe mother's mobile number is 0712345806\n");
     }
 }
