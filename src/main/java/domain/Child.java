@@ -1,5 +1,7 @@
 package domain;
 
+import data.Angel;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -8,8 +10,8 @@ public class Child {
 
     private final String age;
     private final String mothersMobile;
-    private final Optional<Child> lastYearsAngel;
-    public Child(String name, String age, String mothersMobile, Optional<Child> lastYearsAngel) {
+    private final Optional<Angel> lastYearsAngel;
+    public Child(String name, String age, String mothersMobile, Optional<Angel> lastYearsAngel) {
         this.name = name;
         this.age = age != null ? age : "Not set";
         this.mothersMobile = mothersMobile;
@@ -60,9 +62,9 @@ public class Child {
 
     public boolean wasLastYearsAngelFor(Child child) {
         if (child.lastYearsAngel.isPresent()) {
-            Child angel = child.lastYearsAngel.get();
+            Angel angel = child.lastYearsAngel.get();
             return Objects.equals(angel.name, this.name) &&
-                    Objects.equals(angel.mothersMobile, this.mothersMobile);
+                    Objects.equals(angel.mobile, this.mothersMobile);
         }
         return false;
     }

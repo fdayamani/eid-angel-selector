@@ -1,5 +1,6 @@
 package domain;
 
+import data.Angel;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
@@ -48,7 +49,7 @@ public class SelectorTest {
     throwsExceptionIfFinalMatchIsLastYearsAngel() {
         List<Child> sameAsLastYear = List.of(
                 new Child("child1", "2", "07123456789",
-                        Optional.of(new Child("child2", null, "07987654321", Optional.empty()))),
+                        Optional.of(new Angel("child2", "07987654321"))),
                 new Child("child2", null, "07987654321", Optional.empty())
         );
 
